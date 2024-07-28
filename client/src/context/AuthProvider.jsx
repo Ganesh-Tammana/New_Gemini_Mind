@@ -27,7 +27,7 @@ export const AuthProvider=({children})=>{
     },[]);
 
     const login=async (email,password) =>{
-        const res = await axios.post('http://localhost:8080/auth/login',{email,password},{withCredentials:true})
+        const res = await axios.post('https://gemini-mind-api.onrender.com',{email,password},{withCredentials:true})
         const info = res.data.message;
         if(res.data.status){
             setUser(info.username);
@@ -36,7 +36,7 @@ export const AuthProvider=({children})=>{
     }
 
     const logout = async () =>{
-        await axios.get('http://localhost:8080/auth/logout',{withCredentials:true});
+        await axios.get('https://gemini-mind-api.onrender.com',{withCredentials:true});
         setUser(null)
         setEmail(null)
     }
