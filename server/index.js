@@ -25,7 +25,7 @@ app.use(cors({
     }
     return callback(null, true);
   }
-})
+}));
 app.use(express.json());
 app.use('/auth',UserRouter);
 const passKEY=process.env.MONGODB
