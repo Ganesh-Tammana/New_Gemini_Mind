@@ -11,7 +11,7 @@ const app=express();
 app.use(cookieParser());
 
 app.use(cors({
-   origin:"http://localhost:5173",
+   origin:"https://gemini-mind.onrender.com",
    credentials:true
 }));
 
