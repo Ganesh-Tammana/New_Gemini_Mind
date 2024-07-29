@@ -1,5 +1,5 @@
 import {useFormik} from 'formik';
-import axios from 'axios'
+import axios from '../axiosConfig.js'
 import * as Yup from 'yup';
 import {useNavigate,Link} from 'react-router-dom';
 
