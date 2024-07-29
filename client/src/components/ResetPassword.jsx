@@ -1,10 +1,10 @@
 import React from 'react';
 import {useFormik} from 'formik';
-import axios from ../axiosConfig'
+import axios from '../axiosConfig'
 import * as Yup from 'yup';
 import {useNavigate,Link,useParams} from 'react-router-dom';
 
-export default function Register() {
+export default function ResetPassword() {
     const navigate=useNavigate();
     const {token} = useParams();
     axios.defaults.withCredentials = true;
