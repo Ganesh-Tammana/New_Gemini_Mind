@@ -11,7 +11,7 @@ export const AuthProvider=({children})=>{
     useEffect(()=>{
         const fetchData = async () =>{
 
-            await axios.get('https://gemini-mind-api.onrender.com',{withCredentials:true})
+            await axios.get('https://gemini-mind-api.onrender.com/auth/login',{withCredentials:true})
             .then(res=>{
                 const info = res.data.message;
                 if(res.data.status){
