@@ -10,29 +10,10 @@ const PORT=process.env.PORT;
 const app=express();
 app.use(cookieParser());
 
-// const allowedOrigins = [
-//   'http://localhost:5173',
-//   'https://gemini-mind.onrender.com/'
-// ];
 
-// app.use(cors({
-//   origin: function (origin, callback) {
-//     // Allow requests with no origin (like mobile apps or curl requests)
-//     if (!origin) return callback(null, true);
-//     if (allowedOrigins.includes(origin)) {
-//       return callback(null, true);
-//     } else {
-//       return callback(new Error('Not allowed by CORS'), false);
-//     }
-//   },
-//   credentials: true
-// }));
-
-// // Handle preflight requests for all routes
-// app.options('*', cors());
 
 app.use(cors({
-   origin:[*],
+   origin:"https://gemini-mind.onrender.com",
    credentials:true
 }));
 
