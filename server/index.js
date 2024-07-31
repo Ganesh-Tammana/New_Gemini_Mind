@@ -32,7 +32,7 @@ app.use(cookieParser());
 // app.options('*', cors());
 
 app.use(cors({
-   origin:"https://gemini-mind.onrender.com/",
+   origin:"*",
    credentials:true
 }));
 
