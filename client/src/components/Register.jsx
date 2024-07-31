@@ -19,7 +19,7 @@ export default function Register() {
         },
         validationSchema,
         onSubmit :async values=>{
-            await axios.post('https://gemini-mind-api.onrender.com',values)
+            await axios.post('https://gemini-mind-api.onrender.com/auth/signup',values)
             .then(res=>{
                     if(res.data.status) {
                         alert(res.data.message)
