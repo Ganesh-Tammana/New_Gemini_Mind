@@ -15,7 +15,7 @@ export default function ForgotPassword() {
         },
         validationSchema,
         onSubmit :async values=>{
-            await axios.post('https://gemini-mind-api.onrender.com',values)
+            await axios.post('https://gemini-mind-api.onrender.com/auth/forgot-password',values)
             .then(res=>{
                     alert(res.data.message)
                     if(!res.data.status) window.location.reload()
