@@ -1,5 +1,5 @@
 import {createContext,useEffect,useState } from "react";
-import axios from '../axiosConfig';
+import axios from 'axios';
 
 const AuthContext = createContext();
 
@@ -11,23 +11,23 @@ export const AuthProvider=({children})=>{
     useEffect(()=>{
         const fetchData = async () =>{
 
-            await axios.get('https://gemini-mind-api.onrender.com/auth/verify',{withCredentials:true})
-            .then(res=>{
+            try {
+                const res = await axios.get('/auth/verify', { withCredentials: true });
                 const info = res.data.message;
-                if(res.data.status){
+                if (res.data.status) {
                     setUser(info.username);
                     setEmail(info.email);
                 }
-            })
-            .catch(err =>{
-                console.log(err)
-            })
+            } catch (err) {
+                console.error('Verification error:', err);
+            }
         }
+    
         fetchData();
     },[]);
 
     const login=async (email,password) =>{
-        const res = await axios.post('https://gemini-mind-api.onrender.com/auth/login',{email,password},{withCredentials:true})
+        const res = await axios.post('http://localhost:8080/auth/login',{email,password},{withCredentials:true})
         const info = res.data.message;
         if(res.data.status){
             setUser(info.username);
@@ -36,16 +36,16 @@ export const AuthProvider=({children})=>{
     }
 
     const logout = async () =>{
-        await axios.get('https://gemini-mind-api.onrender.com/auth/logout',{withCredentials:true});
+        await axios.get('http://localhost:8080/auth/logout',{withCredentials:true});
         setUser(null)
         setEmail(null)
     }
 
     return (
-        <AuthContext.Provider value={{user,login,logout,loading,email}}>
+        <AuthContext.Provider value={{ user, login, logout, loading, email }}>
             {children}
         </AuthContext.Provider>
-    )
-}
+    );
+};
 
 export default AuthContext;

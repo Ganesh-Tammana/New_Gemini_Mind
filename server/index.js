@@ -20,6 +20,7 @@ app.use(cors({
 app.use(express.json());
 app.use('/auth',UserRouter);
 const passKEY=process.env.MONGODB
+
 mongoose.connect(`mongodb+srv://21A91A05C3:${passKEY}@cluster0.ulmfisc.mongodb.net/AUTHENTICATION?retryWrites=true&w=majority&appName=Cluster0`) 
 .then(() => {
    console.log("Connected to MongoDB");

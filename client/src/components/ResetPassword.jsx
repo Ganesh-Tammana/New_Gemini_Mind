@@ -18,7 +18,7 @@ export default function ResetPassword() {
         },
         validationSchema,
         onSubmit :async values=>{
-            await axios.post('https://gemini-mind-api.onrender.com/auth/reset-password/'+token,values)
+            await axios.post('http://localhost:8080/auth/reset-password/'+token,values)
             .then(res=>{
               if(res.data.status)
                 {

@@ -9,6 +9,9 @@ export default function Speech() {
     browserSupportsSpeechRecognition
   } = useSpeechRecognition();
 
+  const handlestartListening = () => {
+    SpeechRecognition.startListening({continuous : true})
+  }
   if (!browserSupportsSpeechRecognition) {
     return <span>Browser doesn't support speech recognition.</span>;
   }
@@ -16,7 +19,7 @@ export default function Speech() {
   return (
     <div>
       <p>Microphone: {listening ? 'on' : 'off'}</p>
-      <button onClick={SpeechRecognition.startListening}>Start</button>
+      <button onClick={ handlestartListening}>Start</button>
       <button onClick={SpeechRecognition.stopListening}>Stop</button>
       <button onClick={resetTranscript}>Reset</button>
       <p>{transcript}</p>

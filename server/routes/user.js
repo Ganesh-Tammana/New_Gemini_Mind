@@ -33,11 +33,12 @@ router.post('/login',async (req,res)=>{
 
     const { email, password }=req.body;
     const user=await User.findOne({email});
-
+    
     if(!user){
         return res.json({message:"user is not registered"});
     }
     const validPassword=await bcrypt.compare(password,user.password);
+    console.log(validPassword);
     if (!validPassword) {
         return res.json({ message: "password is incorrect" });
     }
@@ -106,11 +107,13 @@ router.post('/reset-password/:token',async (req,res)=>{
 
 const verifyUser = async (req, res, next)=>{
     try{
-        const token = req.cookies.token;
+        const token = req.cookie.token;
+        console.log(token)
         if(!token){
-            return res.json("no token");
+            return res.json({status : false ,message : "no token"});
         }
         const decoded = await jwt.verify(token, process.env.KEY);
+        req.user = decoded;
         next();
     }
     catch(err){
@@ -119,6 +122,7 @@ const verifyUser = async (req, res, next)=>{
 }
 
 router.get( '/verify', verifyUser, async (req,res)=>{
+    
     return res.json({status:true,message : "authorized"})
 });
 
